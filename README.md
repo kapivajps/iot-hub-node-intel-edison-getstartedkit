@@ -119,9 +119,8 @@ If this is the first time you use your Intel Edison board, you will have to foll
 - In your Edison boards command line, type the following command to transfer the files to your board:
 
 ```  
-
-wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/blob/master/remote_monitoring/remote_monitoring.js
-wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/blob/master/remote_monitoring/package.json
+wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/master/remote_monitoring/remote_monitoring.js
+wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/master/remote_monitoring/package.json
 ```  
 
 - Open the file **remote_monitoring.js** in a text editor using the command:
