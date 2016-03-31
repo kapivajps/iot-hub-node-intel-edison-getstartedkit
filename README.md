@@ -315,6 +315,7 @@ FROM
     TempSensors
 WHERE TemperatureReading>25 
 ```
+
 ***
 **Note:** You can change the `25` to `0` when you're ready to generate alerts to look at. This number represents the temperature in degrees celsius to check for when creating alerts. 25 degrees celsius is 77 degrees fahrenheit.
 ***
@@ -353,6 +354,7 @@ WHERE TemperatureReading>25
    - Windows and Mac installers can be found here: https://nodejs.org/en/download/
      - Ensure that you select the options to install NPM and add to your PATH.
    - Linux users can use the commands:
+
 ```
 sudo apt-get update
 sudo apt-get install nodejs
@@ -360,6 +362,7 @@ sudo apt-get install npm
 ``` 
 
 - Additionally, make sure you have cloned the project repository locally by issuing the following command in your desired directory:
+
 ```
 git clone https://github.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit.git
 ```
@@ -388,6 +391,7 @@ bower install
 ```
 
 - Now it is time to run it! Enter the following command:
+
 ```
 node server.js
 ```
@@ -409,10 +413,8 @@ Next, we will update your device so that it can interact with all the things you
 - In your Edison boards command line, type the following command to transfer the files to your board:
 
 ```  
-
 wget hhttps://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/blob/master/command_center/command_center.js
 wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/blob/master/command_center/package.json
-
 ```  
  
 - Open the file **remote_monitoring.js** in a text editor using the command:
