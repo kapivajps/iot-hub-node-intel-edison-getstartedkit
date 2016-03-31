@@ -25,9 +25,9 @@ var sharedAccessKey = '<SHARED_ACCESS_KEY>';
 var connectionString = 'HostName=' + hostName + ';DeviceId=' + deviceId + ';SharedAccessKey=' + sharedAccessKey;
 
 // Sensor data
-var temperature = 50;
-var humidity = 50;
-var externalTemperature = 55;
+var temperature = 0;
+var humidity = 0;
+var externalTemperature = 0;
 
 // Create IoT Hub client
 var client = Client.fromConnectionString(connectionString, Protocol);
