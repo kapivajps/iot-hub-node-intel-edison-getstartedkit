@@ -450,7 +450,7 @@ wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-g
 - Open the file **command_center.js** in a text editor using the command:
 
 ```
-vi remote_monitoring.js
+vi command_center.js
 ```
 
 - Vi is not your normal text editor - Here is a guide to some of the important controls:
