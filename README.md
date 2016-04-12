@@ -261,9 +261,9 @@ Event Hub is an Azure IoT publish-subscribe service that can ingest millions of 
 - Select the `EdisonEventHub` eventhub and go in the **Configure** tab in the **Shared Access Policies** section, add a new policy:
     - Name = `readwrite`
     - Permissions = `Send, Listen`
-- Click **Save** at the bottomof the page, then click the **Dashboard** tab near the top and click on **Connection Information** at the bottom
+- Click **Save** at the bottom of the page, then click the **Dashboard** tab near the top and click on **Connection Information** at the bottom
 - _Copy down the connection string for the `readwrite` policy you created._
-- From the your IoT Hub Settings (The Resource that has connected dots) on the [Microsoft Azure Portal](https://portal.azure.com/), click the **Messaging blade** (found in your settings), write down the _Event Hub-compatible name_
+- From the your IoT Hub Settings on the [Microsoft Azure Portal](https://portal.azure.com/), click the **Messaging blade** (found in your settings), write down the _Event Hub-compatible name_
 - Look at the _Event-hub-compatible Endpoint_, and write down this part: sb://**thispart**.servicebus.windows.net/ we will call this one the _IoTHub EventHub-compatible namespace_
 
 ## 2.6 Create a Storage Account for Table Storage
