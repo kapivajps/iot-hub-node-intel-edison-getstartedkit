@@ -447,7 +447,7 @@ wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-g
 wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/master/command_center/package.json
 ```  
  
-- Open the file **command_center.js** in a text editor using the command:
+- Open the file **command_center.js** in a text editor using the command (Nano is another editor you can use if you are running the v3.0 image on your Edison):
 
 ```
 vi command_center.js
