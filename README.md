@@ -284,8 +284,8 @@ Stream Analytics is an Azure IoT service that streams and analyzes data in the c
     - Source Type = _`Data Stream`_
     - Source = _`IoT Hub`_
     - IoT Hub = _`Edison2Suite`_ (use the name for the IoT Hub you create before)
-    - Shared Access Policy Name = _`device`_
-    - Shared Access Policy Key = _The `device` primary key saved from earlier_
+    - Shared Access Policy Name = _`service`_
+    - Shared Access Policy Key = _The `service` primary key saved from earlier_
     - IoT Hub Consumer Group = "" (leave it to the default empty value)
     - Event serialization format = _`JSON`_
     - Encoding = _`UTF-8`_
