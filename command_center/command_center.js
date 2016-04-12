@@ -20,13 +20,13 @@ var board = new five.Board({
   io: new Edison()
 });
 
-var hostName = '<IOTHUB_HOST_NAME>';
-var deviceId = '<DEVICE_ID>';
-var sharedAccessKey = '<SHARED_ACCESS_KEY>';
-
 // String containing Hostname, Device Id & Device Key in the following formats:
 //  "HostName=<iothub_host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"
-var connectionString = 'HostName=' + hostName + '.azure-devices.net;DeviceId=' + deviceId + ';SharedAccessKey=' + sharedAccessKey;
+var connectionString = '<IOT_HUB_DEVICE_CONNECTION_STRING>';
+
+// Retrieve the deviceId from the connectionString
+var deviceId = ConnectionString.parse(connectionString)["DeviceId"];
+
 
 // fromConnectionString must specify a transport constructor, coming from any transport package.
 var client = Client.fromConnectionString(connectionString, Protocol);

@@ -471,12 +471,15 @@ i	  Insert before cursor
 a	  Append after cursor
 ```
 
-- Locate the following code in the file and update your connection data:
+- Locate the following code in the file and update your connection data.  See below for information how how to retrieve these values:
+
+    - connectionString:
+        - Use the **"Device Explorer"** or **"iothub-explorer"** tools as documented on the [Manage IoT Hub](https://github.com/Azure/azure-iot-sdks/blob/master/doc/manage_iot_hub.md) page to retrieve the connection string for the device you created previously.
+        - Replace `<IOT_HUB_DEVICE_CONNECTION_STRING>` below with that name.
+    - sharedAccess
 
 ```
-var hostName = '<IOTHUB_HOST_NAME>';
-var deviceId = '<DEVICE_ID>';
-var sharedAccessKey = '<SHARED_ACCESS_KEY>';
+var connectionString = '<IOT_HUB_DEVICE_CONNECTION_STRING>';
 ```
 - Save with `Control-s`
 
