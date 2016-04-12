@@ -312,7 +312,7 @@ INTO   
     TemperatureAlertToEventHub
 FROM
     TempSensors
-WHERE TemperatureReading>25 
+WHERE MTemperature > 25 
 ```
 
 ***
