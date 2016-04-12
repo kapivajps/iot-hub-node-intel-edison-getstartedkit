@@ -26,7 +26,7 @@ var sharedAccessKey = '<SHARED_ACCESS_KEY>';
 
 // String containing Hostname, Device Id & Device Key in the following formats:
 //  "HostName=<iothub_host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"
-var connectionString = 'HostName=' + hostName + ';DeviceId=' + deviceId + ';SharedAccessKey=' + sharedAccessKey;
+var connectionString = 'HostName=' + hostName + '.azure-devices.net;DeviceId=' + deviceId + ';SharedAccessKey=' + sharedAccessKey;
 
 var deviceId = ConnectionString.parse(connectionString)["DeviceId"];
 
