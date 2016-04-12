@@ -67,7 +67,7 @@ board.on("ready", function() {
       client.on('message', function (msg) {
         console.log('Id: ' + msg.messageId + ' Body: ' + msg.data);
         try {
-          var command = JSON.parse(msg.getData());
+          var command = msg.data;
           switch(command.Name) {
             case 'TurnFanOn':
               turnFanOn();
