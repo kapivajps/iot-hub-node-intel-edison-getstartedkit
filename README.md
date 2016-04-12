@@ -385,6 +385,8 @@ bower install
         - Click on the name of the event hub from above to open it
         - Click on the "CONNECTION INFORMATION" button along the bottom. 
         - From there, click the button to copy the readwrite shared access policy connection string.
+    - deviceId:
+        - Use the information on the [Manage IoT Hub](https://github.com/Azure/azure-iot-sdks/blob/master/doc/manage_iot_hub.md) to retrieve your deviceId using either the Device Explorer or iothub-explorer tools.
     - iotHubConnString: 
         - In the [Azure Portal](https://portal.azure.com)
         - Open the IoT Hub you created previously. 
@@ -410,8 +412,8 @@ bower install
     "port": "3000",
     "eventHubName": "event-hub-name",
     "ehConnString": "Endpoint=sb://name.servicebus.windows.net/;SharedAccessKeyName=readwrite;SharedAccessKey=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa=",
-    "deviceConnString": "HostName=name.azure-devices.net;DeviceId=device-id;SharedAccessKey=aaaaaaaaaaaaaaaaaaaaaa==",
-    "iotHubConnString": "HostName=name.azure-devices.net;SharedAccessKeyName=owner;SharedAccessKey=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa=",
+    "deviceId": "iot-hub-device-name",
+    "iotHubConnString": "HostName=name.azure-devices.net;SharedAccessKeyName=device;SharedAccessKey=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa=",
     "storageAcountName": "aaaaaaaaaaa",
     "storageAccountKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa==",
     "storageTable": "storage-table-name"
