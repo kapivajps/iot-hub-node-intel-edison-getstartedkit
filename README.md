@@ -270,6 +270,7 @@ Now we will create a service to store our data in the cloud.
 - In the menu, click **New** and select **Data + Storage** then **Storage Account**
 - Choose **Classic** for the deployment model and click on **Create**
 - Enter the name of your choice (We chose `edisonstorage`) for the account name, `Standard-RAGRS` for the type, choose your subscription, select the resource group you created earlier, then click on **Create**
+- You should try to create the storage account in the same region as your IoT Hub and Event Hub if possible.  
 - Once the account is created, find it in the **resources blade** or click on the **pinned tile**, go to **Settings**, **Keys**, and write down the _primary connection string_.
 
 ## 2.7 Create a Stream Analytics job to Save IoT Data in Table Storage and Raise Alerts
