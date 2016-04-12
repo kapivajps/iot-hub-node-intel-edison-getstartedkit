@@ -17,6 +17,7 @@ var storageAcountName = nconf.get('storageAcountName');
 var storageAccountKey = nconf.get('storageAccountKey');
 var storageTable = nconf.get('storageTable');
 var iotHubConnString = nconf.get('iotHubConnString');
+var deviceId = nconf.get('deviceId');
 
 var iotHubClient = ServiceClient.fromConnectionString(iotHubConnString, Amqp);
 
