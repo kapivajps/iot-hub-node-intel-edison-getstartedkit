@@ -120,15 +120,10 @@
                     
                     if(result.length > 0) {
                         angular.forEach(result, function(x) {
-
-                            var utcSeconds = x.eventtime._;
-                            var d = new Date(0);
-                            d.setUTCSeconds(utcSeconds);
-
                             $scope.temperatures.push({
                                 deviceid: x.deviceid._,
                                 temperature: x.temperaturereading._,
-                                eventtime: d
+                                eventtime:  x.eventtime._
                             });
                             $scope.temperatures.reverse();
                         }); 

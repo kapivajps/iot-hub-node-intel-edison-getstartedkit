@@ -261,10 +261,8 @@ Event Hub is an Azure IoT publish-subscribe service that can ingest millions of 
 - Select the `EdisonEventHub` eventhub and go in the **Configure** tab in the **Shared Access Policies** section, add a new policy:
     - Name = `readwrite`
     - Permissions = `Send, Listen`
-- Click **Save** at the bottomof the page, then click the **Dashboard** tab near the top and click on **Connection Information** at the bottom
+- Click **Save** at the bottom of the page, then click the **Dashboard** tab near the top and click on **Connection Information** at the bottom
 - _Copy down the connection string for the `readwrite` policy you created._
-- From the your IoT Hub Settings (The Resource that has connected dots) on the [Microsoft Azure Portal](https://portal.azure.com/), click the **Messaging blade** (found in your settings), write down the _Event Hub-compatible name_
-- Look at the _Event-hub-compatible Endpoint_, and write down this part: sb://**thispart**.servicebus.windows.net/ we will call this one the _IoTHub EventHub-compatible namespace_
 
 ## 2.6 Create a Storage Account for Table Storage
 Now we will create a service to store our data in the cloud.
@@ -272,6 +270,7 @@ Now we will create a service to store our data in the cloud.
 - In the menu, click **New** and select **Data + Storage** then **Storage Account**
 - Choose **Classic** for the deployment model and click on **Create**
 - Enter the name of your choice (We chose `edisonstorage`) for the account name, `Standard-RAGRS` for the type, choose your subscription, select the resource group you created earlier, then click on **Create**
+- You should try to create the storage account in the same region as your IoT Hub and Event Hub if possible.  
 - Once the account is created, find it in the **resources blade** or click on the **pinned tile**, go to **Settings**, **Keys**, and write down the _primary connection string_.
 
 ## 2.7 Create a Stream Analytics job to Save IoT Data in Table Storage and Raise Alerts
@@ -285,8 +284,8 @@ Stream Analytics is an Azure IoT service that streams and analyzes data in the c
     - Source Type = _`Data Stream`_
     - Source = _`IoT Hub`_
     - IoT Hub = _`Edison2Suite`_ (use the name for the IoT Hub you create before)
-    - Shared Access Policy Name = _`device`_
-    - Shared Access Policy Key = _The `device` primary key saved from earlier_
+    - Shared Access Policy Name = _`service`_
+    - Shared Access Policy Key = _The `service` primary key saved from earlier_
     - IoT Hub Consumer Group = "" (leave it to the default empty value)
     - Event serialization format = _`JSON`_
     - Encoding = _`UTF-8`_
@@ -313,7 +312,7 @@ INTO   
     TemperatureAlertToEventHub
 FROM
     TempSensors
-WHERE TemperatureReading>25 
+WHERE MTemperature > 25 
 ```
 
 ***
@@ -326,7 +325,7 @@ WHERE TemperatureReading>25
     - Sink = _`Table Storage`_
     - Storage account = _`edisonstorage`_ (The storage you made earlier)
     - Storage account key = _(The primary key for the storage account made earlier, can be found in Settings -&gt; Keys -&gt; Primary Access Key)_
-    - Table Name = _`TemperatureRecords`_*Your choice - If the table doesn’t already exist, Local Storage will create it
+    - Table Name = _`TemperatureRecords`_ Your choice - If the table doesn’t already exist, Local Storage will create it
     - Partition Key = _`DeviceId`_
     - Row Key = _`EventTime`_
     - Batch size = _`1`_
@@ -371,22 +370,53 @@ git clone https://github.com/Azure-Samples/iot-hub-node-intel-edison-getstartedk
 
 ```
 npm install -g bower
-npm install express nconf tough-cookie azure-event-hubs azure-iot-device azure-iot-device-amqp azure-iothub azure-storage body-parser
+npm install
 bower install
 ```
 
-- Open the `config.json` file and replace the information with your project
+- Open the `config.json` file and replace the information with your project.  See the following for instructions on how to retrieve those values.
 
+    - eventhubName: 
+        - Open the [Classic Azure Management Portal](https://manage.windowsazure.com)
+        - Open the Service Bus namespace you created earlier
+        - Switch to the **EVENT HUBS** page 
+        - You can see and copy the name of your event hub from that page
+    - ehConnString: 
+        - Click on the name of the event hub from above to open it
+        - Click on the "CONNECTION INFORMATION" button along the bottom. 
+        - From there, click the button to copy the readwrite shared access policy connection string.
+    - deviceId:
+        - Use the information on the [Manage IoT Hub](https://github.com/Azure/azure-iot-sdks/blob/master/doc/manage_iot_hub.md) to retrieve your deviceId using either the Device Explorer or iothub-explorer tools.
+    - iotHubConnString: 
+        - In the [Azure Portal](https://portal.azure.com)
+        - Open the IoT Hub you created previously. 
+        - Open the "Settings" blade
+        - Click on the "Shared access policies" setting
+        - Click on the "service" policy
+        - Copy the primary connection string for the policy
+    - storageAccountName:
+        - In the [Azure Portal](https://portal.azure.com)
+        - Open the classic Storage Account you created previously to copy its name
+    - storageAccountKey:
+        - Click on the name of the storage account above to open it
+        - Click the "Settings" button to open the Settings blade
+        - Click on the "Keys" setting
+        - Click the button next to the "PRIMARY ACCESS KEY" top copy it
+    - storageTableName:
+        - This must match the name of the table that was used in the Stream Analytics table storage output above.
+        - If you used the instructions above, you would have named it ***`TemperatureRecords`*** 
+        - If you named it something else, enter the name you used instead.    
+        
 ```
 {
     "port": "3000",
     "eventHubName": "event-hub-name",
     "ehConnString": "Endpoint=sb://name.servicebus.windows.net/;SharedAccessKeyName=readwrite;SharedAccessKey=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa=",
-    "deviceConnString": "HostName=name.azure-devices.net;DeviceId=device-id;SharedAccessKey=aaaaaaaaaaaaaaaaaaaaaa==",
-    "iotHubConnString": "HostName=name.azure-devices.net;SharedAccessKeyName=owner;SharedAccessKey=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa=",
+    "deviceId": "iot-hub-device-name",
+    "iotHubConnString": "HostName=iot-hub-name.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa=",
     "storageAcountName": "aaaaaaaaaaa",
     "storageAccountKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa==",
-    "storageTable": "storage-table-name"
+    "storageTable": "TemperatureRecords"
 } 
 ```
 
@@ -399,7 +429,6 @@ node server.js
 - You should then see something similar to:
 ```
 app running on http://localhost:3000
-client connected
 ``` 
 
 - Visit the url in your browser and you will see the Node app running!
@@ -413,14 +442,14 @@ Next, we will update your device so that it can interact with all the things you
 - In your Edison boards command line, type the following command to transfer the files to your board:
 
 ```  
-wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/blob/master/command_center/command_center.js
-wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/blob/master/command_center/package.json
+wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/master/command_center/command_center.js
+wget https://raw.githubusercontent.com/Azure-Samples/iot-hub-node-intel-edison-getstartedkit/master/command_center/package.json
 ```  
  
-- Open the file **command_center.js** in a text editor using the command:
+- Open the file **command_center.js** in a text editor using the command (Nano is another editor you can use if you are running the v3.0 image on your Edison):
 
 ```
-vi remote_monitoring.js
+vi command_center.js
 ```
 
 - Vi is not your normal text editor - Here is a guide to some of the important controls:
@@ -441,12 +470,15 @@ i	  Insert before cursor
 a	  Append after cursor
 ```
 
-- Locate the following code in the file and update your connection data:
+- Locate the following code in the file and update your connection data.  See below for information how how to retrieve these values:
+
+    - connectionString:
+        - Use the **"Device Explorer"** or **"iothub-explorer"** tools as documented on the [Manage IoT Hub](https://github.com/Azure/azure-iot-sdks/blob/master/doc/manage_iot_hub.md) page to retrieve the connection string for the device you created previously.
+        - Replace `<IOT_HUB_DEVICE_CONNECTION_STRING>` below with that name.
+    - sharedAccess
 
 ```
-var hostName = '<IOTHUB_HOST_NAME>';
-var deviceId = '<DEVICE_ID>';
-var sharedAccessKey = '<SHARED_ACCESS_KEY>';
+var connectionString = '<IOT_HUB_DEVICE_CONNECTION_STRING>';
 ```
 - Save with `Control-s`
 
