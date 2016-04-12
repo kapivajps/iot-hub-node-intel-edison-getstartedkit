@@ -429,7 +429,6 @@ node server.js
 - You should then see something similar to:
 ```
 app running on http://localhost:3000
-client connected
 ``` 
 
 - Visit the url in your browser and you will see the Node app running!
