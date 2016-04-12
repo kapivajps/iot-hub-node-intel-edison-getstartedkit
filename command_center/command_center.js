@@ -28,8 +28,6 @@ var sharedAccessKey = '<SHARED_ACCESS_KEY>';
 //  "HostName=<iothub_host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"
 var connectionString = 'HostName=' + hostName + '.azure-devices.net;DeviceId=' + deviceId + ';SharedAccessKey=' + sharedAccessKey;
 
-var deviceId = ConnectionString.parse(connectionString)["DeviceId"];
-
 // fromConnectionString must specify a transport constructor, coming from any transport package.
 var client = Client.fromConnectionString(connectionString, Protocol);
 
@@ -85,11 +83,11 @@ board.on("ready", function() {
               break;
           }
 
-          client.complete(msg, printErrorFor('complete'));
+          client.complete(msg, printResultFor('complete'));
         }
         catch (err) {
-          printErrorFor('parse received message')(err);
-          client.reject(msg, printErrorFor('reject'));
+          printResultFor('parse received message')(err);
+          client.reject(msg, printResultFor('reject'));
         }
       });
 
