@@ -75,7 +75,7 @@ board.on("ready", function() {
               turnFanOn();
               break;
             case 'TurnFanOff':
-              turnFanOn();
+              turnFanOff();
               break;
             case 'SetAirResistance':
               setAirResistance(command.Parameters.Position);
