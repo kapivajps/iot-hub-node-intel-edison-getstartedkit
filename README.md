@@ -416,7 +416,7 @@ bower install
     "iotHubConnString": "HostName=iot-hub-name.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa=",
     "storageAcountName": "aaaaaaaaaaa",
     "storageAccountKey": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa==",
-    "storageTable": "storage-table-name"
+    "storageTable": "TemperatureRecords"
 } 
 ```
 
