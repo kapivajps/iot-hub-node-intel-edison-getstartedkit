@@ -370,7 +370,7 @@ git clone https://github.com/Azure-Samples/iot-hub-node-intel-edison-getstartedk
 
 ```
 npm install -g bower
-npm install express nconf tough-cookie azure-event-hubs azure-iot-device azure-iot-device-amqp azure-iothub azure-storage body-parser
+npm install
 bower install
 ```
 
