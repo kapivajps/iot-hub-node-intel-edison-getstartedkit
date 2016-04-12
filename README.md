@@ -325,7 +325,7 @@ WHERE MTemperature > 25
     - Sink = _`Table Storage`_
     - Storage account = _`edisonstorage`_ (The storage you made earlier)
     - Storage account key = _(The primary key for the storage account made earlier, can be found in Settings -&gt; Keys -&gt; Primary Access Key)_
-    - Table Name = _`TemperatureRecords`_*Your choice - If the table doesn’t already exist, Local Storage will create it
+    - Table Name = _`TemperatureRecords`_ Your choice - If the table doesn’t already exist, Local Storage will create it
     - Partition Key = _`DeviceId`_
     - Row Key = _`EventTime`_
     - Batch size = _`1`_
@@ -374,8 +374,37 @@ npm install
 bower install
 ```
 
-- Open the `config.json` file and replace the information with your project
+- Open the `config.json` file and replace the information with your project.  See the following for instructions on how to retrieve those values.
 
+    - eventhubName: 
+        - Open the [Classic Azure Management Portal](https://manage.windowsazure.com)
+        - Open the Service Bus namespace you created earlier
+        - Switch to the **EVENT HUBS** page 
+        - You can see and copy the name of your event hub from that page
+    - ehConnString: 
+        - Click on the name of the event hub from above to open it
+        - Click on the "CONNECTION INFORMATION" button along the bottom. 
+        - From there, click the button to copy the readwrite shared access policy connection string.
+    - iotHubConnString: 
+        - In the [Azure Portal](https://portal.azure.com)
+        - Open the IoT Hub you created previously. 
+        - Open the "Settings" blade
+        - Click on the "Shared access policies" setting
+        - Click on the "service" policy
+        - Copy the primary connection string for the policy
+    - storageAccountName:
+        - In the [Azure Portal](https://portal.azure.com)
+        - Open the classic Storage Account you created previously to copy its name
+    - storageAccountKey:
+        - Click on the name of the storage account above to open it
+        - Click the "Settings" button to open the Settings blade
+        - Click on the "Keys" setting
+        - Click the button next to the "PRIMARY ACCESS KEY" top copy it
+    - storageTableName:
+        - This must match the name of the table that was used in the Stream Analytics table storage output above.
+        - If you used the instructions above, you would have named it ***`TemperatureRecords`*** 
+        - If you named it something else, enter the name you used instead.    
+        
 ```
 {
     "port": "3000",
