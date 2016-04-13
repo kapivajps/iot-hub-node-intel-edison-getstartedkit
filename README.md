@@ -155,7 +155,7 @@ var deviceId = '<DEVICE_ID>';
 var sharedAccessKey = '<SHARED_ACCESS_KEY>';
 ```
 
-- Save with `Control-s`
+- Save with `[Escape]:wq[Enter]`
 
 - Run the sample application using the following commands:
 
@@ -480,7 +480,7 @@ a	  Append after cursor
 ```
 var connectionString = '<IOT_HUB_DEVICE_CONNECTION_STRING>';
 ```
-- Save with `Control-s`
+- Save with `[Escape]:wq[Enter]`
 
 - Run the sample application using the following commands:
 
@@ -501,3 +501,16 @@ Head back and run your Node application and you will see the most recent updates
 ## 2.11 Next steps
 
 Please visit our [Azure IoT Dev Center](https://azure.microsoft.com/en-us/develop/iot/) for more samples and documentation on Azure IoT.
+
+
+# Troubleshooting
+
+## Stopping Provisioned Services
+
+- In the [Microsoft Azure Portal](https://portal.azure.com/)
+    - Click on "All Resources"
+    - For each Stream Analytics and Web App resource:
+        - Click on the resource and click the "Stop" button in the new blade that appears
+    - For each IoT Hub resource:
+        - Click on the resource and click the "Devices" button in the new blade that appears
+        - Click on each device in the list and click the "Disable" button that appears in the new blade at the bottom
