@@ -69,6 +69,11 @@ In this tutorial, you'll be doing the following:
 
 - Click select in the **Remote Monitoring** option
 - Type in a solution name. For this tutorial we’ll be using _“EdisonSuite”_ (You will have to name it something else. Make it unique. I.E. "ContosoSample")
+
+***
+**Note:** Make sure to copy down the names and connection strings mentioned into a text document for reference later.
+***
+
 - Choose your subscription plan and geographic region, then click **Create Solution**
 - Wait for Azure to finish provisioning your IoT suite (this process may take up to 10 minutes), and then click **Launch**
 
@@ -85,7 +90,7 @@ In this tutorial, you'll be doing the following:
 - Make note of your `device ID`, `Device Key`, and `IoT Hub Hostname` to enter into the code you’ll run on your device later 
 
 ***
-**Note:** The Remote Monitoring solution provisions a set of Azure IoT Services in your Azure account. To avoid unnecessary consumption, you may want to **disable** the simulated devices created with the solution (go to the devices tab, select the device simulators one by one and click on deactivate in the left menu. And once you are all done with the solution you can completely remove it from your subscription from the azureiotsuite.com portal. 
+**Note:** The Remote Monitoring solution provisions a set of Azure IoT Services in your Azure account. To avoid unnecessary consumption, you may want to **stop** your remote monitoring solution while you are working on the next steps. (See: [Troubleshooting](#troubleshooting))
 ***
 
 - For additional reference, refer to the following:
@@ -244,6 +249,11 @@ This tutorial has the following steps:
 - To create your Microsoft Azure IoT Hub and add a device, follow the instructions outlined in the [Setup IoT Hub Microsoft Azure Iot SDK page](https://github.com/Azure/azure-iot-sdks/blob/master/doc/setup_iothub.md).
 - After creating your device, make note of your connection string to enter into the code you’ll run on your device later
 
+***
+**Note:** Make sure to copy down the names and connection strings mentioned into a text document for reference later.
+***
+
+
 ## 2.5 Create an Event Hub
 Event Hub is an Azure IoT publish-subscribe service that can ingest millions of events per second and stream them into multiple applications, services or devices.
 - Log on to the [Microsoft Azure Portal](https://portal.azure.com/)
@@ -344,7 +354,7 @@ WHERE MTemperature > 25
 - Back in the** Stream Analytics blade**, start the job by clicking on the **Start **button at the top
 
 ***
-**Note:** Make sure to **stop** your Command Center jobs once you have completed this to avoid unnecesary Azure consumption! 
+**Note:** Make sure to **stop** your Command Center jobs once you have when you take a break or finish to avoid unnecessary Azure consumption!  (See: [Troubleshooting](#troubleshooting))
 ***
 
 ## 2.8 Node Application Setup
@@ -495,7 +505,7 @@ node command_center.js
 Head back and run your Node application and you will see the most recent updates and any alerts show up there.
 
 ***
-**Note:** Make sure to **stop** your Command Center jobs in Stream Analytics once you have completed this to avoid unnecesary Azure consumption! 
+**Note:** Make sure to **stop** your Command Center jobs once you have when you finish to avoid unnecessary Azure consumption!  (See: [Troubleshooting](#troubleshooting))
 ***
 
 ## 2.11 Next steps
