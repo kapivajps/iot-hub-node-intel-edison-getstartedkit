@@ -3,9 +3,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var Amqp = require('azure-iot-device-amqp').Amqp;
 var ServiceClient = require('azure-iothub').Client;
-var Message = require('azure-iot-device').Message;
+var Message = require('azure-iot-common').Message;
 var EventHubClient = require('azure-event-hubs').Client;
 var azure = require('azure-storage');
 var nconf = require('nconf');
@@ -19,7 +18,7 @@ var storageTable = nconf.get('storageTable');
 var iotHubConnString = nconf.get('iotHubConnString');
 var deviceId = nconf.get('deviceId');
 
-var iotHubClient = ServiceClient.fromConnectionString(iotHubConnString, Amqp);
+var iotHubClient = ServiceClient.fromConnectionString(iotHubConnString);
 
 // event hub alerts
 var alerts = [];
