@@ -87,13 +87,14 @@
                 <thead>
                     <tr>
                         <th>Temperature</th>
+                        <th>Humidity</th>
                         <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="t in temperatures">
                         <td>{{ t.temperature | number }}&deg;C</td>
-                        <td>{{ t.humidity | % }}%</td>
+                        <td>{{ t.humidity | number}}%</td>
                         <td>{{ t.eventtime | date : 'medium' }}</td>
                     </tr>
                 </tbody>
