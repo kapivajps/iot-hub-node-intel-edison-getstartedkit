@@ -65,6 +65,7 @@
                     <tr>
                         <th>Temperature</th>
                         <th>Humidity</th>   <!-- Added -->
+                        <th>Gas</th>        <!-- Added -->
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -72,6 +73,7 @@
                     <tr>
                         <td>{{ latest_reading.temperature | number }}&deg;C</td>
                         <td>{{ latest_reading.humidity | number }}%</td>    <!-- Added -->
+                        <td>{{ latest_reading.gas | number }}</td>          <!-- Added -->
                         <td>{{ latest_reading.eventtime | date : 'medium' }}</td>
                     </tr>
                 </tbody>
@@ -92,14 +94,16 @@
                 <thead>
                     <tr>
                         <th>Temperature</th>
-                        <th>Humidity</th>
+                        <th>Humidity</th>   <!-- Added -->
+                        <th>Gas</th>        <!-- Added -->
                         <th>Time</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="t in temperatures">
                         <td>{{ t.temperature | number }}&deg;C</td>
-                        <td>{{ t.humidity | number}}%</td>
+                        <td>{{ t.humidity | number}}%</td>          <!-- Added -->
+                        <td>{{ t.gas | number}}</td>               <!-- Added -->
                         <td>{{ t.eventtime | date : 'medium' }}</td>
                     </tr>
                 </tbody>
@@ -142,6 +146,7 @@
                                 deviceid: x.deviceid._,
                                 temperature: x.temperaturereading._,
                                 humidity: x.humidity._,
+                                gas: x.gas._,
                                 eventtime:  x.eventtime._
                             });
                             //$scope.temperatures.push(x);
