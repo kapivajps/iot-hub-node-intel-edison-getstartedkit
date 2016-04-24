@@ -6,7 +6,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="jps-style.css" rel="stylesheet" />
     <style>
         body {
             margin-top: 60px
@@ -60,6 +61,7 @@
                     <tr>
                         <th>Temperature</th>
                         <th>Humidity</th>   <!-- Added -->
+                        <th>Gas</th>        <!-- Added -->
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -67,6 +69,7 @@
                     <tr>
                         <td>{{ latest_reading.temperature | number }}&deg;C</td>
                         <td>{{ latest_reading.humidity | number }}%</td>    <!-- Added -->
+                        <td>{{ latest_reading.gas | number }}</td>    <!-- Added -->
                         <td>{{ latest_reading.eventtime | date : 'medium' }}</td>
                     </tr>
                 </tbody>
@@ -88,6 +91,7 @@
                     <tr>
                         <th>Temperature</th>
                         <th>Humidity</th>
+                        <th>Gas</th>
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -95,6 +99,7 @@
                     <tr ng-repeat="t in temperatures">
                         <td>{{ t.temperature | number }}&deg;C</td>
                         <td>{{ t.humidity | number}}%</td>
+                        <td>{{ t.gas | number}}</td>
                         <td>{{ t.eventtime | date : 'medium' }}</td>
                     </tr>
                 </tbody>
@@ -137,6 +142,7 @@
                                 deviceid: x.deviceid._,
                                 temperature: x.temperaturereading._,
                                 humidity: x.humidity._,
+                                gas: x.gas._,
                                 eventtime:  x.eventtime._
                             });
                             //$scope.temperatures.push(x);

@@ -55,7 +55,7 @@ app.get('/api/alerts', function(req, res) {
 
 app.get('/api/temperatures', function(req, res) {
     var query = new azure.TableQuery()
-        .select(['eventtime', 'temperaturereading', 'humidity', 'deviceid'])
+        .select(['eventtime', 'temperaturereading', 'humidity', 'gas', 'deviceid'])     //Added/Modified
         .where('PartitionKey eq ?', deviceId);
     tableSvc.queryEntities(storageTable, query, null, function(err, result, response) {
         res.json(result.entries.slice(-10));
