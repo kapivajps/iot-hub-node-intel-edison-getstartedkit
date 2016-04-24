@@ -66,6 +66,7 @@
                         <th>Temperature</th>
                         <th>Humidity</th>   <!-- Added -->
                         <th>Gas</th>        <!-- Added -->
+                        <th>Dust</th>       <!-- Added -->
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -74,6 +75,7 @@
                         <td>{{ latest_reading.temperature | number }}&deg;C</td>
                         <td>{{ latest_reading.humidity | number }}%</td>    <!-- Added -->
                         <td>{{ latest_reading.gas | number }}</td>          <!-- Added -->
+                        <td>{{ latest_reading.dustd | number }}</td>          <!-- Added -->
                         <td>{{ latest_reading.eventtime | date : 'medium' }}</td>
                     </tr>
                 </tbody>
@@ -81,10 +83,32 @@
         </div>
         <div class="col-md-4" style="overflow-wrap:break-word">
             <h2>Alerts</h2>
-
-            <pre ng-repeat="alert in latest_alerts">{{ alert | json }}</pre>
+             <table>
+                <thead>
+                    <tr>
+                        <th>Temperature</th>
+                        <th>Humidity</th>   <!-- Added -->
+                        <th>Gas</th>        <!-- Added -->
+                        <th>Dust</th>       <!-- Added -->
+                        <th>Time</th>
+                        <th>Alert</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ latest_reading_alert.temperature | number }}&deg;C</td>
+                        <td>{{ latest_reading_alert.humidity | number }}%</td>    <!-- Added -->
+                        <td>{{ latest_reading_alert.gas | number }}</td>          <!-- Added -->
+                        <td>{{ latest_reading_alert.dustd | number }}</td>          <!-- Added -->
+                        <td>{{ latest_reading_alert.eventtime | date : 'medium' }}</td>
+                        <td>{{ latest_reading_alert.alert}}</td>                     <!-- Added -->              
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!--<pre ng-repeat="alert in latest_alerts">{{ alert | json }}</pre>-->
             <br />
-
+            
         </div>
         <div class="col-md-4">
             <h2>Data History</h2>
@@ -96,6 +120,7 @@
                         <th>Temperature</th>
                         <th>Humidity</th>   <!-- Added -->
                         <th>Gas</th>        <!-- Added -->
+                        <th>Dust</th>       <!-- Added -->
                         <th>Time</th>
                     </tr>
                 </thead>
@@ -104,6 +129,7 @@
                         <td>{{ t.temperature | number }}&deg;C</td>
                         <td>{{ t.humidity | number}}%</td>          <!-- Added -->
                         <td>{{ t.gas | number}}</td>               <!-- Added -->
+                        <td>{{ t.dustd | number}}</td>               <!-- Added -->
                         <td>{{ t.eventtime | date : 'medium' }}</td>
                     </tr>
                 </tbody>
@@ -126,14 +152,24 @@
                 $scope.send = function(value) {
                     $http.post('/api/command/', {command: value});    
                 };
-            
+                
+                 console.log("called");
+                 
                 $http.get('/api/alerts').success(function(data) {
-                    //TODO: Fix if data is not null alert
-                    // if(data){   
-                    //     $http.post('/api/command/', {command: 1});      
-                    // } else {
-                    //     $http.post('/api/command/', {command: 0});
-                    // }
+                    console.log(data);
+                    
+                    // if(data.length > 0) {
+                    //     angular.forEach(result, function(x) {
+                    //         $scope.latest_alerts.push({
+                    //             deviceid: x.deviceid._,
+                    //             temperature: x.temperaturereading._,
+                    //             humidity: x.humidity._,
+                    //             gas: x.alerttype._,
+                    //             eventtime:  x.eventtime._
+                    //         });
+                    //         //$scope.temperatures.push(x);
+                    //         $scope.latest_alerts.reverse();
+                    //     });
                     
                     $scope.latest_alerts = data.reverse(); 
                 });
@@ -147,6 +183,7 @@
                                 temperature: x.temperaturereading._,
                                 humidity: x.humidity._,
                                 gas: x.gas._,
+                                dustd: x.dustd._,
                                 eventtime:  x.eventtime._
                             });
                             //$scope.temperatures.push(x);
@@ -156,6 +193,30 @@
                         $scope.latest_reading = $scope.temperatures[0];
                     } 
                 });
+                
+                //Alert
+                $scope.alertlog = [];
+                $http.get('/api/alertlog').success(function(result) {
+                    console.log("alertlog called");
+                    if(result.length > 0) {
+                        angular.forEach(result, function(x) {
+                            $scope.alertlog.push({
+                                deviceid: x.deviceid._,
+                                temperature: x.temperaturereading._,
+                                humidity: x.humidity._,
+                                gas: x.gas._,
+                                dustd: x.dustd._,
+                                eventtime:  x.eventtime._,
+                                alert: x.alerttype._
+                            });
+                            //$scope.alertlog.push(x);
+                            $scope.alertlog.reverse();
+                        }); 
+                        
+                        $scope.latest_reading_alert = $scope.alertlog[0];
+                    } 
+                });
+                
             });
         })();
     </script>

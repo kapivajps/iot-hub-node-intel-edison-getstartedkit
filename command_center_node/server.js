@@ -27,6 +27,7 @@ ehclient.createReceiver('$Default', '0', { startAfterTime: Date.now() })
     .then(function(rx) {
         rx.on('errorReceived', function(err) { console.log(err); });
         rx.on('message', function(message) {
+            console.log("message received");
             alerts.push(message.body);
             alerts = alerts.slice(-5); // keep last 5
         });
@@ -35,6 +36,15 @@ ehclient.createReceiver('$Default', '0', { startAfterTime: Date.now() })
 // table storage
 var tableSvc = azure.createTableService(storageAcountName, storageAccountKey);
 tableSvc.createTableIfNotExists(storageTable, function(err, result, response) {
+    if (err) {
+        console.log('error looking up table');
+        console.log(err)
+    }
+});
+
+// table storage
+var tableSvc2 = azure.createTableService(storageAcountName, storageAccountKey);
+tableSvc2.createTableIfNotExists("alertlog", function(err, result, response) {
     if (err) {
         console.log('error looking up table');
         console.log(err)
@@ -74,9 +84,19 @@ app.get('/api/alerts', function(req, res) {
 
 app.get('/api/temperatures', function(req, res) {
     var query = new azure.TableQuery()
-        .select(['eventtime', 'temperaturereading', 'humidity', 'gas', 'deviceid'])     //Added/Modified
+        .select(['eventtime', 'temperaturereading', 'humidity', 'gas', 'dustd','deviceid'])     //Added/Modified
         .where('PartitionKey eq ?', deviceId);
     tableSvc.queryEntities(storageTable, query, null, function(err, result, response) {
+        res.json(result.entries.slice(-10));
+    });
+});
+
+ //Alert
+app.get('/api/alertlog', function(req, res) {                                  
+    var query = new azure.TableQuery()
+        .select(['eventtime', 'temperaturereading', 'humidity', 'gas', 'dustd', 'alerttype', 'deviceid'])     //Added/Modified
+        .where('PartitionKey eq ?', deviceId);
+    tableSvc2.queryEntities("alertlog", query, null, function(err, result, response) {
         res.json(result.entries.slice(-10));
     });
 });
