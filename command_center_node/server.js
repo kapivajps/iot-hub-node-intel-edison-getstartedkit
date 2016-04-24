@@ -44,6 +44,7 @@ tableSvc.createTableIfNotExists(storageTable, function(err, result, response) {
 // website setup
 var app = express();
 //var port = nconf.get('port');
+//fixed ports
 var port = normalizePort(process.env.PORT || nconf.get('port'));
 
 function normalizePort(val) {
