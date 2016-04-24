@@ -1,0 +1,39 @@
+body {
+    margin-top: 60px;
+    color: white;
+    background: url("http://apod.nasa.gov/apod/image/0406/hills_spirit_big.jpg");
+
+}
+
+table {
+    width: 100%;
+    background-color: rgba(0,0,0,0.4) ;
+}
+
+table th {
+    font-weight: bold;
+    text-align: center;
+    background-color: #000000;
+    border-spacing: 10px;
+}
+
+table td {
+    text-align: center;
+    width: 400px;
+}
+
+
+.on-off-toggle {
+    text-align: center;
+    border: 10px;
+    border-style: solid;
+    padding: 20px;
+    border-color: black;
+    border-width: 3px;
+
+}
+
+.time-column {
+    width: 500px;
+
+}
