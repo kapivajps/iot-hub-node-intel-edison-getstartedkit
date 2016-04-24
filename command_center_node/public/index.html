@@ -83,6 +83,7 @@
         </div>
         <div class="col-md-4" style="overflow-wrap:break-word">
             <h2>Alerts</h2>
+            <div ng-show="alertlog.length > 0">
              <table>
                 <thead>
                     <tr>
@@ -95,20 +96,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{{ latest_reading_alert.temperature | number }}&deg;C</td>
-                        <td>{{ latest_reading_alert.humidity | number }}%</td>    <!-- Added -->
-                        <td>{{ latest_reading_alert.gas | number }}</td>          <!-- Added -->
-                        <td>{{ latest_reading_alert.dustd | number }}</td>          <!-- Added -->
-                        <td>{{ latest_reading_alert.eventtime | date : 'medium' }}</td>
-                        <td>{{ latest_reading_alert.alert}}</td>                     <!-- Added -->              
+                    <tr ng-repeat="a in alertlog">
+                        <td>{{ a.temperature | number }}&deg;C</td>
+                        <td>{{ a.humidity | number }}%</td>    <!-- Added -->
+                        <td>{{ a.gas | number }}</td>          <!-- Added -->
+                        <td>{{ a.dustd | number }}</td>          <!-- Added -->
+                        <td>{{ a.eventtime | date : 'medium' }}</td>
+                        <td>{{ a.alert}}</td>                     <!-- Added -->              
                     </tr>
                 </tbody>
             </table>
-            
+            <div ng-show="alertlog.length === 0">
+                No Alert
+            </div>
             <!--<pre ng-repeat="alert in latest_alerts">{{ alert | json }}</pre>-->
             <br />
-            
+            </div>
         </div>
         <div class="col-md-4">
             <h2>Data History</h2>

@@ -97,7 +97,7 @@ app.get('/api/alertlog', function(req, res) {
         .select(['eventtime', 'temperaturereading', 'humidity', 'gas', 'dustd', 'alerttype', 'deviceid'])     //Added/Modified
         .where('PartitionKey eq ?', deviceId);
     tableSvc2.queryEntities("alertlog", query, null, function(err, result, response) {
-        res.json(result.entries.slice(-10));
+        res.json(result.entries.slice(-3));
     });
 });
 
