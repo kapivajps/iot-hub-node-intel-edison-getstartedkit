@@ -56,34 +56,10 @@
     <button type="button" class="btn btn-lg btn-danger" ng-click="send(0)">Turn Off</button>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            
-            <h2>Current Data</h2> The last recorded reading on device {{ latest_reading.deviceid }} was:
-            <table>
-                <thead>
-                    <tr>
-                        <th>Temperature</th>
-                        <th>Humidity</th>   <!-- Added -->
-                        <th>Gas</th>        <!-- Added -->
-                        <th>Dust</th>       <!-- Added -->
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ latest_reading.temperature | number }}&deg;C</td>
-                        <td>{{ latest_reading.humidity | number }}%</td>    <!-- Added -->
-                        <td>{{ latest_reading.gas | number }}</td>          <!-- Added -->
-                        <td>{{ latest_reading.dustd | number }}</td>          <!-- Added -->
-                        <td>{{ latest_reading.eventtime | date : 'medium' }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-4" style="overflow-wrap:break-word">
-            <h2>Alerts</h2>
-            <div ng-show="alertlog.length > 0">
+
+    <div class="row" style="overflow-wrap:break-word">
+    <h2>Alerts</h2>
+        <div ng-show="alertlog.length > 0">
              <table>
                 <thead>
                     <tr>
@@ -111,37 +87,65 @@
             </div>
             <!--<pre ng-repeat="alert in latest_alerts">{{ alert | json }}</pre>-->
             <br />
-            </div>
         </div>
-        <div class="col-md-4">
-            <h2>Data History</h2>
-            <div ng-show="temperatures.length > 0">
-                <h4>Most recent {{ temperatures.length }} readings </h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Temperature</th>
-                        <th>Humidity</th>   <!-- Added -->
-                        <th>Gas</th>        <!-- Added -->
-                        <th>Dust</th>       <!-- Added -->
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="t in temperatures">
-                        <td>{{ t.temperature | number }}&deg;C</td>
-                        <td>{{ t.humidity | number}}%</td>          <!-- Added -->
-                        <td>{{ t.gas | number}}</td>               <!-- Added -->
-                        <td>{{ t.dustd | number}}</td>               <!-- Added -->
-                        <td>{{ t.eventtime | date : 'medium' }}</td>
-                    </tr>
-                </tbody>
-            </table> 
+    </div>
+
+    <div class="row">
+        <h2>Current Data</h2> 
+        <p>The last recorded reading on device {{ latest_reading.deviceid }} was:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Temperature</th>
+                    <th>Humidity</th>   <!-- Added -->
+                    <th>Gas</th>        <!-- Added -->
+                    <th>Dust</th>       <!-- Added -->
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ latest_reading.temperature | number }}&deg;C</td>
+                    <td>{{ latest_reading.humidity | number }}%</td>    <!-- Added -->
+                    <td>{{ latest_reading.gas | number }}</td>          <!-- Added -->
+                    <td>{{ latest_reading.dustd | number }}</td>          <!-- Added -->
+                    <td>{{ latest_reading.eventtime | date : 'medium' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="row">
+        <h2>Data History</h2>
+        <div ng-show="temperatures.length > 0">
+            <h4>Most recent {{ temperatures.length }} readings </h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Temperature</th>
+                    <th>Humidity</th>   <!-- Added -->
+                    <th>Gas</th>        <!-- Added -->
+                    <th>Dust</th>       <!-- Added -->
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="t in temperatures">
+                    <td>{{ t.temperature | number }}&deg;C</td>
+                    <td>{{ t.humidity | number}}%</td>          <!-- Added -->
+                    <td>{{ t.gas | number}}</td>               <!-- Added -->
+                    <td>{{ t.dustd | number}}</td>               <!-- Added -->
+                    <td>{{ t.eventtime | date : 'medium' }}</td>
+                </tr>
+            </tbody>
+        </table> 
             <div ng-show="temperatures.length === 0">
                 No temperature history found
             </div>
         </div>
     </div>
+
     <script src="/angular/angular.min.js"></script>
     <script>
         (function() {
