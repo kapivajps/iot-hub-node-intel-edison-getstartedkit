@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>JPS Control Center</title>
+    <title>JSS Control Center</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#/">JPS Control Center</a>
+                <a class="navbar-brand" href="#/">JSS Control Center</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -51,7 +51,7 @@
 
 
     <div class="on-off-toggle">
-    <h1> Jarvis Particle Sensor Control</h1>
+    <h1> Jarvis Sensor System Control</h1>
     <button type="button" class="btn btn-lg btn-success" ng-click="send(1)">Turn On</button>
     <button type="button" class="btn btn-lg btn-danger" ng-click="send(0)">Turn Off</button>
     </div>
@@ -78,7 +78,8 @@
                         <td>{{ a.gas | number }}</td>          <!-- Added -->
                         <td>{{ a.dustd | number }}</td>          <!-- Added -->
                         <td>{{ a.eventtime | date : 'medium' }}</td>
-                        <td>{{ a.alert}}</td>                     <!-- Added -->              
+                        <td>{{ a.alert}}</td>                     <!-- Added -->
+                        <!--<td><button type="button" class="btn btn-lg btn-danger" ng-click="send(0)">Delete</button></td>              -->
                     </tr>
                 </tbody>
             </table>
