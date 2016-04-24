@@ -43,7 +43,25 @@ tableSvc.createTableIfNotExists(storageTable, function(err, result, response) {
 
 // website setup
 var app = express();
-var port = nconf.get('port');
+//var port = nconf.get('port');
+var port = normalizePort(process.env.PORT || nconf.get('port'));
+
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
 app.use(express.static('public'));
 app.use(express.static('bower_components'));
 app.use(bodyParser.json());
