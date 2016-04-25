@@ -16,13 +16,15 @@ var ConnectionString = require('azure-iot-device').ConnectionString;
 // Edison packages
 var five = require("johnny-five");
 var Edison = require("edison-io");
+//var upmBuzzer = require("jsupm_buzzer");
+//var groveSensor = require('jsupm_grove');
 var board = new five.Board({
   io: new Edison()
 });
 
 // String containing Hostname, Device Id & Device Key in the following formats:
 //  "HostName=<iothub_host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"
-var connectionString = '<IOT_HUB_DEVICE_CONNECTION_STRING>';
+var connectionString = 'HostName=jpshub.azure-devices.net;DeviceId=jpsdevice01;SharedAccessKey=bNd32qZm0OI0EY+iO8559r+hDBGbYPkx81LvzuWyncM=';
 
 // Retrieve the deviceId from the connectionString
 var deviceId = ConnectionString.parse(connectionString)["DeviceId"];
@@ -40,19 +42,39 @@ function printResultFor(op) {
 }
 
 board.on("ready", function() {
-  var temp = new five.Temperature({
-    pin: "A0",
-    controller: "GROVE"
+    var temp = new five.Temperature({
+        pin: "A0",
+        controller: "GROVE"
+    });
+
+    var humid = new five.Temperature({
+        pin: "A3",
+        controller: "GROVE"
+    });
+  
+  var gas = new five.Sensor({
+    pin: "A1",
   });
+
+  var dust = new five.Sensor(2);
+
+  //var relay = new five.Relay(3);
 
   var led = new five.Led(8);
 
+ // var myBuzzer = new five.Buzzer(6);
+
   var turnFanOn = function () {
-    led.on();
+      led.on();
+      //relay.on();
+      //chords.push(upmBuzzer.DO);
+      
   };
 
   var turnFanOff = function() {
-    led.off();
+      led.off();
+      //relay.off();
+      //chords.off();
   };
 
   var setAirResistance = function(position) {
@@ -91,12 +113,36 @@ board.on("ready", function() {
         }
       });
 
-      // Create a message and send it to the IoT Hub every second
+      var gassensor = 0;
+      gas.scale(0, 100).on("change", function () {
+          gassensor = this.value;
+          if (gassensor >= 5.0)
+              led.on();
+          else led.off();
+          });
+
+
+      var dustsensor = 0;
+      dust.scale(0, 1023).on("change", function () {
+          //console.log(dust);
+          dustsensor = this.value;
+         
+          
+      });
+
+      // Create a message and send it to the IoT Hub every 5 seconds 
       var sendInterval = setInterval(function () {
         var data = JSON.stringify({
           DeviceId: deviceId,
           EventTime: new Date().toISOString(),
-          Mtemperature: temp.celsius
+         
+          Mtemperature: temp.celsius,
+          Humidity: humid.celsius,
+          Gas: gassensor,
+          Dustd: dustsensor
+          
+          
+          
         });
 
         var message = new Message(data);
