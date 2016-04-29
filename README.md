@@ -40,7 +40,7 @@ Considerations for further Mars exploration is how do we continue making these o
 
 ### Software
 * Microsoft Azure - cloud hosted responsive web/mobile app and data
-[Jarvis Sensor System](http://teamstardust.netai.net/)
+[Jarvis Sensor System](http://jpsweb.azurewebsites.net/)
 
 #### Software Programming
 * Front-end: Angular.js

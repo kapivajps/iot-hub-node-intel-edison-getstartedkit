@@ -47,7 +47,7 @@ Cylon.robot({
             ratio: 0,
             concentration: 0
         };
-
+        // reads gas sensor
         this.gas.on("analogRead", function (data) {
             var value = data.toScale(0, 100);
             if (value >= 5) {
