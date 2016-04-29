@@ -1,7 +1,5 @@
 # Team Stardust
 
-[Jarvis Sensor System](http://teamstardust.netai.net/)
-
 <p align="center">
   <img src="https://pbs.twimg.com/media/Cg1TJAyUUAAsmrR.jpg" alt="Team Stardust"/>
 </p>
@@ -42,6 +40,7 @@ Considerations for further Mars exploration is how do we continue making these o
 
 ### Software
 * Microsoft Azure - cloud hosted responsive web/mobile app and data
+[Jarvis Sensor System](http://teamstardust.netai.net/)
 
 #### Software Programming
 * Front-end: Angular.js
