@@ -65,6 +65,12 @@ Cylon.robot({
             console.log("Low pulse occupancy: " + my.dustData.lowPulseOccupancy);
             console.log("Ratio: " + my.dustData.ratio);
             console.log("Concentration: " + my.dustData.concentration);
+            var value = my.dustData.concentration;
+            if (value >= 150.0) {
+                my.fan.turnOn();
+            } else {
+                my.fan.turnOff();
+            }
         }, 30000);
 
         var setAirResistance = function (position) {
