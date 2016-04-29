@@ -1,5 +1,9 @@
 # Team Stardust
 
+<p align="center">
+  <img src="https://pbs.twimg.com/media/Cg1TJAyUUAAsmrR.jpg" alt="Team Stardust"/>
+</p>
+
 ## THE CHALLENGE: AIRCHECK
 #### EARTH
 
@@ -11,6 +15,10 @@ Develop an app or platform to crowd-source information for comparing changes in 
 ### Jarvis Sensor System (Made in Mars)
 
 [Jarvis Sensor System Control - http://jpsweb.azurewebsites.net](http://jpsweb.azurewebsites.net "Jarvis Sensor System Control")
+
+<p align="center">
+  <img alt="Hardware" src="https://pbs.twimg.com/media/Cg1TJGJUgAENVNg.jpg">
+</p>
 
 
 What we can’t see can still harm us. That’s the more insidious sinister thing that lies beneath. We have the means to check air quality on earth, but as we continue venturing deeper into space, the necessity of creating and expanding on current technology to protect humans grows. Stories from past Apollo Missions depicted lunar dust sticking onto space suits and eventually being inhaled by the astronauts causing negative side effects. Martian dust is no exception. It’s sticky, fine, and when inhaled at certain sizes can prove deadly. If NASA hopes to keep their astronauts safe and colonize Mars in the future, we need to make sure technology is able to keep their environments and suits sterile.
