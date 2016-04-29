@@ -39,6 +39,6 @@ Considerations for further Mars exploration is how do we continue making these o
 
 #### Hardware Programming: 
 * Node.js
-* Johnny-Five
+* Cylon.js
 
 [Making a Home from Materials on Mars](http://www.mae.ucla.edu/making-a-home-from-materials-on-mars)
