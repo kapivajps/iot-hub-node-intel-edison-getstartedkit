@@ -51,3 +51,7 @@ Considerations for further Mars exploration is how do we continue making these o
 * Cylon.js
 
 [Making a Home from Materials on Mars](http://www.mae.ucla.edu/making-a-home-from-materials-on-mars)
+
+#### Future Implications
+We are currently developing prototypes for a lightweight, 3D-printed sensor casing, capable of containing particles of interest for analysis.  Please check back soon for possible designs. 
+
